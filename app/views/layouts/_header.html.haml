@@ -1,0 +1,71 @@
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      %a.btn.btn-navbar{ "data-toggle"=>"collapse", "data-target"=>".nav-collapse"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.brand{ :href => "#" }
+        WEBSITE_NAME 
+      - if current_user
+        .nav-collapse
+          %ul.nav
+            %li#home-nav
+              %a{:href => "/" } Home
+            %li#list-nav
+              %a{:href => "#" } Nav Element One 
+            %li#show-nav
+              %a{:href => "#" } Navvy
+            %li#portfolio-nav
+              %a{:href => '#' } Navalicous 
+            %li#watchlist-nav
+              %a{:href => '#' } Navtastic
+        %ul.nav.pull-right
+          %li
+            // TODO add search for your controller
+            =form_tag({:controller=>'users', :action=>'find'}, :method=>'post', :class => 'navbar-search') do
+              =text_field_tag(:id, nil, :class => 'search-query', :placeholder => 'Enter a user')
+          %li.navbar-vertical
+          %li
+            .btn-group
+              %a.btn{ :href => "#" }
+                %i.icon-user
+                = current_user.email
+              %a.btn.dropdown-toggle{ "data-toggle" => "dropdown" , :href => "#" }
+                %span.caret
+              %ul.dropdown-menu
+                %li
+                  %a{ :href => "users/#{current_user.id}" } Account
+                %li
+                  %a{:href => "#"} Settings
+                %li
+                  %a{:href => destroy_user_session_url} Logout
+      - else
+        %ul.nav.secondary-nav.session-dropdown.pull-right#session
+          %li.dropdown.js-session
+            %a.dropdown-toggle.dropdown-signin#signin-link{:href => "#", :data => { :toggle => "dropdown" } }
+              %small Have an account?
+              %b Sign in
+              %b.caret
+            %ul.dropdown-menu.dropdown-form#signin-dropdown
+              %li.dropdown-caret.right
+                %span.caret-outer
+                %span.caret-inner
+              %li
+                = form_tag(user_session_path, :class => "signin") do
+                  %fieldset.textbox.js-username
+                    = label_tag 'user[email]', 'Email'
+                    = text_field_tag 'user[email]'
+                  %fieldset.password.js-password
+                    = label_tag 'user[password]', 'Password'
+                    = password_field_tag 'user[password]'
+                  %fieldset.subchck
+                    = label_tag 'user[remember_me]', 'Remember Me'
+                    = check_box_tag 'user[remember_me]'
+                    %button.btn.btn-primary.submit Sign in
+                  .divider
+                  = link_to 'Forgot your password?', new_password_path('user')
+          %li
+            %a{:href=> new_user_registration_url }
+              %small New to WEBSITE_NAME?
+              %span.emphasize Join Today!

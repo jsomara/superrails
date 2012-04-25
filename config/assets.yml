@@ -1,0 +1,31 @@
+embed_assets: on
+javascript_compressor: yui
+compress_assets: on
+gzip_assets: on
+# Load these for S3-jammit 
+# s3_bucket: 
+# s3_access_key_id: 
+# s3_secret_access_key: 
+# s3_permission: public_read 
+# use_cloudfront: on 
+# cloudfront_dist_id: 
+# cloudfront_domain: 
+
+javascripts:
+  jquery_ui:
+    - public/javascripts/lib/jquery/jquery-ui.min.js
+  workspace:
+    - public/javascripts/lib/bootstrap/bootstrap.min.js
+    - public/javascripts/h5bp/modernizr-2.5.3.min.js
+    - public/javascripts/h5bp/plugins.js
+    - public/javascripts/h5bp/script.js
+    - public/javascripts/lib/rails.js
+    - public/javascripts/application.js
+  modernizr:
+    - public/javascripts/h5bp/modernizr-2.5.3.min.js
+
+stylesheets:
+  jquery_table:
+    - public/stylesheets/datatables-bootstrap.css
+  common:
+    - public/stylesheets/bootstrap.css

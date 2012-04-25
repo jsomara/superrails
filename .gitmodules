@@ -1,0 +1,3 @@
+[submodule "vendor/kickstrap"]
+	path = vendor/kickstrap
+	url = https://github.com/ajkochanowicz/Kickstrap.git

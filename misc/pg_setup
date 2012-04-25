@@ -1,0 +1,20 @@
+yum install postgresql postgresql-server
+service postgresql initdb
+service postgresql start
+
+su -l postgres
+createuser --no-superuser --no-createdb --no-createrole --pwprompt sr_dev
+createuser --no-superuser --no-createdb --no-createrole --pwprompt sr_test
+
+createdb --owner sr_dev superrails
+
+# $ vi /var/lib/pgsql/data/pg_hba.conf
+local   superrails    sr_dev                             md5
+host    superrails    sr_dev       127.0.0.1/32          md5
+host    superrails    sr_dev       127.0.0.1/32          md5
+
+local   superrails_test    sr_test                             md5
+host    superrails_test    sr_test       127.0.0.1/32          md5
+host    superrails_test    sr_test       127.0.0.1/32          md5
+
+service postgresql reload
